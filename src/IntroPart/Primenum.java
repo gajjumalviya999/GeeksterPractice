@@ -1,4 +1,4 @@
-package GeekstersAdvance;
+package IntroPart;
 import java.util.Scanner;
 public class Primenum
 

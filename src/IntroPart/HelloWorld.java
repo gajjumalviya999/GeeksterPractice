@@ -1,4 +1,4 @@
-package GeekstersAdvance;
+package IntroPart;
 
 public class HelloWorld
 {
