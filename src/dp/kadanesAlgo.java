@@ -3,6 +3,7 @@ class kadanesAlgo{
 	public static void main(String[] args) {
 		int a[]= {-1,-2,-3,-4,-2,-1};
 		System.out.println(kadanesalgo(a));
+		System.out.println(TwoLoops(a));
 	}
 	public static int kadanesalgo(int arr[]) {
 		int maxsum=Integer.MIN_VALUE;
