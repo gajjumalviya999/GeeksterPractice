@@ -5,6 +5,7 @@ class PrintWaveandSpiral{
 		printwave(arr);
 		System.out.println("*********");
 		printspiral(arr);
+		
 	}
 
 	private static void printspiral(int[][] arr) {
