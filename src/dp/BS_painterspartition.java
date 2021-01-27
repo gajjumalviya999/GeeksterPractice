@@ -17,7 +17,7 @@ class BS_painterspartition{
 		 sum+=i;
 		 max=Math.max(max,i);
 	 }
-	 System.out.println("  gfgfgc"); 
+	
 	 int low=max; //n painters
 	 int high=sum;//1 painter
 	 
