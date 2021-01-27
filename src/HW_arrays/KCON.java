@@ -1,4 +1,4 @@
-package interviewprep600;
+package HW_arrays;
 class KCON{
 	public static void main(String[] args) {
 		int a[]= {1,-2,1};

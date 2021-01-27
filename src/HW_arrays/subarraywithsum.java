@@ -1,4 +1,4 @@
-package interviewprep600;
+package HW_arrays;
 class subarraywithsum{
 	public static void main(String[] args) {
 		int arr[]={1, 4};
