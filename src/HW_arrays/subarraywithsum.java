@@ -15,7 +15,7 @@ class subarraywithsum{
 			for(int j=i;j<arr.length;j++) {
 				currsum+=arr[j];
 				if(currsum==sum) {
-					System.out.println("element found between index " + i+  " and " +j);
+					System.out.println("sum found between index " + i+  " and " +j);
 					flag=1;
 					break;
 				}
@@ -25,7 +25,7 @@ class subarraywithsum{
 		}
 		if(flag==0)
 			System.out.println("No subarray found\r\n" + 
-					"There is no subarray with " + sum + "sum");
+					"There is no subarray with " + sum + " sum");
 		
 	}
 }
