@@ -1,4 +1,4 @@
-package HW_arrays;
+package HW;
 class subarraywithsum{
 	public static void main(String[] args) {
 		int arr[]={1, 4};

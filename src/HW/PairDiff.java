@@ -1,4 +1,4 @@
-package HW_arrays;
+package HW;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package HW_arrays;
+package HW;
 class KCON{
 	public static void main(String[] args) {
 		int a[]= {1,-2,1};

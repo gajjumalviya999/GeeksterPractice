@@ -1,4 +1,4 @@
-package HW_arrays;
+package HW;
 class Zigzagarray{
 	public static void main(String[] args) {
 		int arr[]={4, 3, 7, 8, 6, 2, 1} ;

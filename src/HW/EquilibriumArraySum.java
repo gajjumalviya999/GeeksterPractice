@@ -1,4 +1,4 @@
-package HW_arrays;
+package HW;
 class EquilibriumArraySum{
 	public static void main(String[] args) {
 		int arr[]= {1,2,3};

@@ -1,4 +1,4 @@
-package HW_searchandsort;
+package HW;
 class repeatandmiss{
 	public static void main(String[] args) {
 		int arr[]= {1,2,3,4,4,6,7,8,9};
