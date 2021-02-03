@@ -1,7 +1,11 @@
 package dp;
-public class QueensAttack2 {
+public class QueensAttack {
 
-    // Complete the queensAttack function below.
+	 public static void main(String[] args) {
+			int n=5,k=3,r_q=4,c_q=3;
+			int obstacles[][]= {{5,5},{4,2},{2,3}};
+			System.out.println(queensAttack(n,k,r_q,c_q,obstacles));
+		}
     static int queensAttack(int n, int k,int r_q, int c_q, int[][] obstacles) {
         int d11,d12,d13,d14,u1,u2,l1,r1;
         int sum=0;
@@ -22,12 +26,16 @@ public class QueensAttack2 {
        while(i>=1&&j>=1){
            for(int obs=0;obs<k;obs++){
                if(i==obstacles[obs][0]&&j==obstacles[obs][1])
-                   return count;
+               {System.out.println(count);  
+               return count;
+               }
+               
            }
            count++;
            i--;
            j--;    
        }
+       System.out.println(count);
        return count;
        
    }
@@ -35,16 +43,19 @@ public class QueensAttack2 {
             int count=0;
             int i=r_q-1,j=c_q+1;
             while(i>=1&&j<=n){
-           for(int obs=0;obs<k;obs++){
-               if(i==obstacles[obs][0]&&j==obstacles[obs][1])
-                   return count;
-           }
+            	for(int obs=0;obs<k;obs++){
+            		if(i==obstacles[obs][0]&&j==obstacles[obs][1])
+            			{
+            			System.out.println(count);  
+            			return count;
+            			}
+            	}
                count++;
                i--;
                j++;
-           }
-           
-       
+             
+            }
+            System.out.println(count);
        return count;
        
    }
@@ -53,8 +64,10 @@ public class QueensAttack2 {
        int i=r_q+1,j=c_q+1;
        while(i<=n&&j<=n){
            for(int obs=0;obs<k;obs++){
-               if(i==obstacles[obs][0]&&j==obstacles[obs][1])
-                   return count;
+        	   if(i==obstacles[obs][0]&&j==obstacles[obs][1])
+               {System.out.println(count);  
+               return count;
+               }
            }
                count++;
                i++;
@@ -62,6 +75,7 @@ public class QueensAttack2 {
            
            
        }
+       System.out.println(count);
        return count;
        
    }
@@ -70,8 +84,10 @@ public class QueensAttack2 {
        int i=r_q+1,j=c_q-1;
        while(i<=n&&j>=1){
           for(int obs=0;obs<k;obs++){
-               if(i==obstacles[obs][0]&&j==obstacles[obs][1])
-                   return count;
+        	  if(i==obstacles[obs][0]&&j==obstacles[obs][1])
+              {System.out.println(count);  
+              return count;
+              }
            }
                count++;
                i++;
@@ -79,6 +95,7 @@ public class QueensAttack2 {
         
            
        }
+       System.out.println(count);
        return count;
        
    }
@@ -87,30 +104,36 @@ public class QueensAttack2 {
        int i=r_q-1,j=c_q;
        while(i>=1){
           for(int obs=0;obs<k;obs++){
-               if(i==obstacles[obs][0]&&j==obstacles[obs][1])
-                   return count;
-           }
+        	  if(i==obstacles[obs][0]&&j==obstacles[obs][1])
+              {System.out.println(count);  
+              return count;
+              }
+        	  }
                count++;
                i--;
            
            
        }
+       System.out.println(count);
        return count;
        
    }
         private static int S(int n,int r_q,int c_q ,int k,int[][] obstacles){
                int count=0;
-       int i=r_q-1,j=c_q;
-       while(i<=n){
+              int i=r_q+1,j=c_q;
+              while(i<=n){
            for(int obs=0;obs<k;obs++){
-               if(i==obstacles[obs][0]&&j==obstacles[obs][1])
-                   return count;
+        	   if(i==obstacles[obs][0]&&j==obstacles[obs][1])
+               {System.out.println(count);  
+               return count;
+               }
            }
                count++;
                i++;
           
            
        }
+       System.out.println(count);
        return count;
        
    }
@@ -119,14 +142,17 @@ public class QueensAttack2 {
        int i=r_q,j=c_q+1;
        while(j<=n){
           for(int obs=0;obs<k;obs++){
-               if(i==obstacles[obs][0]&&j==obstacles[obs][1])
-                   return count;
+        	  if(i==obstacles[obs][0]&&j==obstacles[obs][1])
+              {System.out.println(count);  
+              return count;
+              }
            }
                count++;
                j++;
            
            
        }
+       System.out.println(count);
        return count;
    }
         private static int W(int n,int r_q,int c_q ,int k,int[][] obstacles){
@@ -134,15 +160,19 @@ public class QueensAttack2 {
        int i=r_q,j=c_q-1;
        while(j>=1){
           for(int obs=0;obs<k;obs++){
-               if(i==obstacles[obs][0]&&j==obstacles[obs][1])
-                   return count;
+        	  if(i==obstacles[obs][0]&&j==obstacles[obs][1])
+              {System.out.println(count);  
+              return count;
+              }
            }
                count++;
                j--;
           
            
        }
+       System.out.println(count);
        return count;
        
    }
+    
 }
