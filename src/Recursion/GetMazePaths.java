@@ -4,8 +4,13 @@ import java.util.ArrayList;
 
 class GetMazePaths{
 	public static void main(String[] args) {
-		System.out.println(getmazepaths(0,0,2,2));
-		System.out.println(getmazepathmultiple(0,0,2,2));
+		ArrayList <String > res= getmazepaths(0,0,2,2);
+		System.out.println(res);
+		System.out.println(res.size());
+		ArrayList <String > res2= getmazepathmultiple(0,0,2,2);
+		System.out.println(res2);
+		System.out.println(res2.size());
+		
 	}
 
 	private static ArrayList<String> getmazepathmultiple(int cr, int cc, int er , int ec) {

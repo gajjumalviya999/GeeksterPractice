@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 class GetBoardPaths{
 	public static void main(String[] args) {
-		System.out.println(getboardpaths(0,10));
+		ArrayList<String> res=  getboardpaths(0,10);
+		System.out.println(res);
+		System.out.println(res.size());
+		//printBoardPaths(0,10,"");
 	}
 
 	private static ArrayList<String> getboardpaths(int start, int end) {
@@ -29,5 +32,17 @@ class GetBoardPaths{
            return mr;
            
         		  
+	}
+	public static void printBoardPaths(int curr, int end, String ans) {
+		if(curr==end) {
+			System.out.println(ans);
+			return;
+		}
+		if(curr>end) {
+			return;
+		}
+		for(int i=1;i<=6;i++) {
+			printBoardPaths(curr+i,end,ans+i);
+		}
 	}
 }
