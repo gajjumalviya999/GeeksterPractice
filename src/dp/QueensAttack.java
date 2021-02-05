@@ -2,7 +2,7 @@ package dp;
 public class QueensAttack {
 
 	 public static void main(String[] args) {
-			int n=5,k=3,r_q=4,c_q=3;
+			int n=8,k=3,r_q=4,c_q=3;
 			int obstacles[][]= {{5,5},{4,2},{2,3}};
 			System.out.println(queensAttack(n,k,r_q,c_q,obstacles));
 		}
