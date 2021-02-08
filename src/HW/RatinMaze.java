@@ -2,8 +2,8 @@ package HW;
 class RatinMaze{
 	public static void main(String[] args) {
 		int arr[][]={{1, 0, 0, 0},
-					 {1, 1, 0, 1},
-					 {0, 1, 0, 0},
+					 {1, 1, 1, 1},
+					 {0, 1, 1, 0},
 					 {1, 1, 1, 1}};
 		int sol[][]=new int [arr.length][arr[0].length];
 	   ratInMaze(arr,0,0,sol);
@@ -19,6 +19,7 @@ class RatinMaze{
 					   System.out.print(i[j]+"\t" );
 				   System.out.println();
 			 }
+			 System.out.println("**********************");
 			return;
 		}
 		

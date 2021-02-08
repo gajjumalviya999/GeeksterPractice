@@ -1,7 +1,7 @@
 package dp;
 class TrappingWater{
 	public static void main(String[] args) {
-	   int [] heights= {0,1,0,2,1,0,1,3,2,1,2,1};
+	   int [] heights= {2,0,2,4,1,2,3,2,4,5};
 	   System.out.println(trappingwater(heights));
 	   }
 	public static int trappingwater(int [] heights) {
