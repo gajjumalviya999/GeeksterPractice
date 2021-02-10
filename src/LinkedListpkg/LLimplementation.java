@@ -25,11 +25,12 @@ class LLimplementation{
 	
 //  linkedlist.deletewithoutheadwithNodePtr(2);
 //	linkedlist.show();
-//  System.out.println( linkedlist.NthNodeFromLast(2).getdata());
+	System.out.println(linkedlist.size);
+  System.out.println( linkedlist.kthNodeFromLast(6).getdata());
 //	System.out.println(linkedlist.getsize()+1);
-	linkedlist.tail.setnext(linkedlist.head.getnext().getnext());
-	linkedlist.DetectandRemoveLoopLL();
-	linkedlist.DetectandRemoveLoopLL();
+//	linkedlist.tail.setnext(linkedlist.head.getnext());
+//	linkedlist.DetectandRemoveLoopLL();
+//	linkedlist.DetectandRemoveLoopLL();
 	}
 }
 

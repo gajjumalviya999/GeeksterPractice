@@ -6,7 +6,7 @@ class LL{
 	
 	public LL() {
 		head=null;
-		size=-1;
+		size=0;
 		tail=null;
 	}
 	public void addfirst(int data) {
@@ -14,7 +14,7 @@ class LL{
 		addfirst(node);
 	}
 	private void addfirst(Node node) {
-		if(size==-1) {
+		if(size==0) {
 			node.setnext(null);
 			this.head=node;
 			this.tail=node;
@@ -32,7 +32,7 @@ class LL{
 		addlast(node);
 	}
 	private void addlast(Node node) {
-		if(size==-1) {
+		if(size==0) {
 			node.setnext(null);
 			this.head=node;
 			this.tail=node;
@@ -87,13 +87,13 @@ class LL{
 	}
 	
 	public int poplast() {
-		if(this.size==-1) {
+		if(this.size==0) {
 			System.out.println("cant pop list is empty");
-			return -1;
+			return 0;
 			
 		}
 		else
-			if(this.size==0) {
+			if(this.size==1) {
 				int element=head.getdata();
 				this.head=null;
 				this.tail=null;
@@ -113,11 +113,11 @@ class LL{
 			}
 	}
 	public int removehead() {
-		if(this.size<0) {
+		if(this.size==0) {
 			System.out.println("CAnt remove size <0");
 			return -1;
 		}
-		else if(this.size==0) {
+		else if(this.size==1) {
 			int ele=head.getdata();
 			this.head=null;
 			this.tail=null;
@@ -219,15 +219,15 @@ class LL{
 		}
 		
 	}
-	public Node NthNodeFromLast(int n) {
-		if(n>-1&& n<size) {
+	public Node kthNodeFromLast(int k) {
+		if(k>-1&& k<=size) {
 			Node left=head;
 			Node right=head;
-			while(n!=1) {
+			while(k!=0) {
 				right=right.getnext();
-				n--;
+				k--;
 			}
-			while(right.getnext()!=null) {
+			while(right!=null) {
 				left=left.getnext();
 				right=right.getnext();
 			}
@@ -242,20 +242,22 @@ class LL{
 	public void DetectandRemoveLoopLL() {
 		Node slow=this.head;
 		Node fast=this.head;
-		if(this.tail.getnext()==null) {
-			System.out.println("Loop not found");
-			return ;
-			}
-		while( slow!=null && fast!=null&& fast.getnext()!=null) {
+		while(true) {
 			slow=slow.getnext();
 			fast=fast.getnext().getnext();
 			if(slow==fast) {
 				break;
 			}
+			if(slow==null|| fast==null)
+			{
+				System.out.println(" Loop not found");
+				return ;
+			}
+			
 		}
 		// detect starting of loop
 		slow=this.head;
-		while(slow!=fast && slow.getnext()!=null && fast.getnext()!=null) {
+		while(slow!=fast) {
 			slow=slow.getnext();
 			fast=fast.getnext();
 			
