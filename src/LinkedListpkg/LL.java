@@ -86,50 +86,62 @@ class LL{
 		}
 	}
 	
-	public int poplast() {
-		if(this.size==0) {
+	public void poplast() {
+		if(this.size==-1) {
 			System.out.println("cant pop list is empty");
-			return 0;
+			return ;
 			
 		}
 		else
-			if(this.size==1) {
-				int element=head.getdata();
+			if(this.size==0) {
+				
 				this.head=null;
 				this.tail=null;
 				this.size--;
-				return element;
+				return;
 			}
 			else
 			{ Node current=this.head;
 				while(current.getnext().getnext()!=null) {
 					current=current.getnext();
 				}
-				int element=current.getnext().getdata();
+				
 				current.setnext(null);
 				this.tail=current;
 				this.size--;
-				return element;
+				return;
 			}
 	}
-	public int removehead() {
+	public void removehead() {
 		if(this.size==0) {
 			System.out.println("CAnt remove size <0");
-			return -1;
+			return;
 		}
 		else if(this.size==1) {
-			int ele=head.getdata();
 			this.head=null;
 			this.tail=null;
 			this.size=0;
-			return ele;	
+			return ;	
 		}
 		else {
-			int ele=head.getdata();
+			
 			this.head=head.getnext();
 			this.size--;
-			return ele;			
+			return ;		
 		}
+		
+	}
+	public void removenode(Node node) {
+		if(this.head==node) {
+			removehead();
+			return;
+		}
+		if(this.tail==node) {
+			poplast();
+			return;
+		}
+		deletewithoutheadwithNodePtr(node);
+		return;
 		
 	}
 	public void reverseData() {
@@ -270,4 +282,100 @@ class LL{
        fast.setnext(null);
        System.out.println("Loop removed");
 	}
+	public void  foldingall() {
+		// TODO Auto-generated method stub
+		left=this.head;
+		Node right=this.head;
+		foldingall(right,0);
+		
+	}
+	private void  foldingall(Node right,int floor) {
+		// TODO Auto-generated method stub
+		if(right==null) {
+			return;
+		}
+	
+			foldingall(right.getnext(),floor+1);
+		
+		if(floor>this.getsize()/2) {
+			Node temp=left.getnext();
+			left.setnext(right);
+			right.setnext(temp);
+			left=temp;
+		}
+		if(floor==this.getsize()/2) {
+			right.setnext(null);
+			this.tail=right;
+		}
+	
+	}
+	public void reverseDRec() {
+		left=this.head;
+		Node right=this.head;
+		reverseDRec(right ,0);
+		
+	}
+	private void reverseDRec(Node right, int i) {
+		// TODO Auto-generated method stub
+		if(right==null)
+			return;
+		reverseDRec(right.getnext(),i+1);
+		if(i>=this.getsize()/2) {
+			int temp=right.getdata();
+			right.setdata(left.getdata());
+			left.setdata(temp);
+			left=left.getnext();
+		}
+	}
+	public void reversePRec() {
+		reversePRec(this.head);
+		Node temp=this.head;
+		this.head=this.tail;
+		this.tail=temp;
+		this.tail.setnext(null);
+	}
+	private void reversePRec(Node node) {
+		// TODO Auto-generated method stub
+		if(node.getnext()==null)
+			return;
+		reversePRec(node.getnext());
+		node.getnext().setnext(node);
+		
+	}
+	public void DeleteNodesWhichHaveaGreaterValueonrightSide() {
+		this.reverseDRec();
+		this.show();
+		int tempmax=this.head.getdata();
+		System.out.println(tempmax);
+		Node currnode=this.head;
+		while(currnode!=null &&currnode.getnext()!=null) {
+			if(currnode.next.getdata()<tempmax) {
+					Node temp = currnode.getnext();
+		                currnode.next = temp.next;
+		                this.size--;
+		                if(currnode.next==null)
+		                	this.tail=currnode;
+		                temp = null;
+			}
+			else
+				{tempmax=currnode.getdata();
+					currnode=currnode.getnext();
+					 if(currnode.next==null)
+		                	this.tail=currnode;
+				}
+		}
+		this.reverseDRec();
+	}
+	public void removeDuplicateSorted() {
+		System.out.println("hhgsh");
+		Node curr=this.head;
+		while(curr!=null&&curr.getnext()!=null) {
+			if(curr.getdata()==curr.getnext().getdata()) {
+				curr.setnext(curr.getnext().getnext());
+				curr=curr.getnext();
+			}
+		}
+		
+	}
+	
 }

@@ -32,6 +32,6 @@ class firstnonRepeatingcharacter{
 			return nonRepeat.get(0);
 		}
 		else 
-			return '#'; 
+			return '\0'; 
 	}
 }

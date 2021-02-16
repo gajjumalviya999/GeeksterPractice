@@ -6,11 +6,13 @@ public class RemoveDuplicates {
 		LL linkedlist1=new LL();
 		linkedlist1.addfirst(10);
 		linkedlist1.addlast(20);
-		linkedlist1.addlast(30);
-		linkedlist1.addlast(30);
-		linkedlist1.addfirst(10);
 		linkedlist1.addlast(20);
+		linkedlist1.addlast(30);
+		linkedlist1.addlast(30);
+		linkedlist1.addlast(40);
+		linkedlist1.addlast(40);
 		removeDuplicate(linkedlist1);
+		removeduplicatesorted(linkedlist1);
 		linkedlist1.show();
 }
 
@@ -36,4 +38,17 @@ public class RemoveDuplicates {
 		else
 			System.out.println("No list Found");
 	}	
+	private static void removeduplicatesorted(LL linkedlist) {
+	if(linkedlist.head!=null) {
+		Node currnode=linkedlist.head;
+		while(currnode!=null&&currnode.getnext()!=null) {
+			while(currnode.getnext()!=null &&currnode.getdata()==currnode.getnext().getdata() ) {
+				currnode.setnext(currnode.getnext().getnext());
+			}
+			currnode=currnode.getnext();
+		}
+	}
+	else 
+		return;
+	}
 }
