@@ -1,6 +1,8 @@
 package stack;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class Stackquestions {
@@ -182,4 +184,22 @@ public int infixeva(String S) {
 			return v1 / v2;
 		}
 }
+	public  List<Integer> removeAdjacentDuplicates(List<Integer> list) {
+        Stack<Integer> stack = new Stack<>();
+        //iterate
+        for(int a : list) {
+
+            if(!stack.isEmpty() && stack.peek() == a) {
+                stack.pop();
+            } else {
+                stack.push(a);
+            }
+        }
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        while (!stack.isEmpty()) {
+            result.add(stack.pop());
+        }
+        Collections.reverse(result);
+        return result;
+    }
 }

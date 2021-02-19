@@ -1,5 +1,8 @@
 package stack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //import java.util.ArrayList;
 
 public class StackMain {
@@ -30,8 +33,17 @@ public class StackMain {
 //		int arr[]=  {6,2,5,4,5,1,6};
 //		
 //		System.out.println(ps.maxareahisto(arr));
-		System.out.println(ps.infixeva("2+(6*4/8)-3"));
-		System.out.println(Integer.valueOf("3"));
+//		System.out.println(ps.infixeva("2+(6*4/8)-3"));
+//		System.out.println(Integer.valueOf("3"));
+		List<Integer>  list=new ArrayList<Integer>();
+		list.add(1);
+		list.add(2);
+		list.add(2);
+		list.add(1);
+		list.add(3);
+		list.add(2);
+		
+		System.out.println(ps.removeAdjacentDuplicates(list));
 	}
 
 }

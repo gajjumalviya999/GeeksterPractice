@@ -4,16 +4,21 @@ public class MergeTwoSortedLL {
 
 	public static void main(String[] args) {
 		LL linkedlist1=new LL();
-		LL linkedlist2=new LL();
+//		LL linkedlist2=new LL();
 		linkedlist1.addfirst(10);
-		linkedlist1.addlast(20);
-		linkedlist1.addlast(30);
-		linkedlist1.addlast(40);
-		linkedlist2.addfirst(15);
-		linkedlist2.addlast(26);
-		linkedlist2.addlast(37);
-		linkedlist2.addlast(42);
-	     mergetwosortedll(linkedlist1,linkedlist2).show();
+		linkedlist1.addlast(2);
+		linkedlist1.addlast(7);
+		linkedlist1.addlast(1);
+		linkedlist1.addlast(6);
+		linkedlist1.addlast(5);
+		linkedlist1.addlast(3);
+		linkedlist1.addlast(4);
+		linkedlist1.addlast(8);
+		
+		LL mergedll=MergeSort(linkedlist1.head,linkedlist1.tail);
+		mergedll.show();
+		System.out.println(mergedll.head.data);
+		System.out.println(mergedll.tail.data);
 	}
 
 	private static LL mergetwosortedll(LL linkedlist1, LL linkedlist2) {
@@ -44,6 +49,29 @@ public class MergeTwoSortedLL {
 			}
 		
 		return resulted;
+	}
+	public static Node midofLL(Node head, Node tail) {
+		
+		Node s=head;
+		Node f=head;
+		while(f!=tail&f.next!=tail) {
+			s=s.getnext();
+			f=f.getnext().getnext();
+		}
+		return s;
+	}
+	private static LL MergeSort(Node head, Node Tail) {
+		if(head==Tail) {
+			LL br=new LL();
+			br.addlast(head.data);
+			return br;
+		}
+		Node mid=midofLL(head,Tail);
+		LL leftLL=MergeSort(head,mid);
+		 LL rightLL=MergeSort(mid.next,Tail);
+		LL mergedLL=mergetwosortedll(leftLL, rightLL);
+		
+		return mergedLL;
 	}
 
 }
