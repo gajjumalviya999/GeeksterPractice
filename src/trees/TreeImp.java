@@ -1,6 +1,8 @@
 package trees;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class TreeImp {
 	Node root;
@@ -97,30 +99,36 @@ public void printAllPathRoottoLeaf(Node root, String str) {
 	printAllPathRoottoLeaf(root.left ,str+root.data);
 	printAllPathRoottoLeaf(root.right ,str+root.data);
 }
-public ArrayList<Integer> printnodetoRoot(Node root, int num) {
+public void printnodetoRoot(Node root, int num) {
+	ArrayList<Node> result=pathnodetoRoot(root,num);
+	for(Node N:result) {
+		System.out.println(N.data+"  ");
+	}
+}
+public ArrayList<Node> pathnodetoRoot(Node root, int num) {
 	if(root==null) {
-		ArrayList <Integer>br=new ArrayList<>();
+		ArrayList <Node>br=new ArrayList<>();
 		return br;
 	}
 	if(root.data==num) {
-		ArrayList<Integer> mr=new ArrayList<>();
-		mr.add(num);
+		ArrayList<Node> mr=new ArrayList<>();
+		mr.add(root);
 		return mr;
 	}
-	ArrayList<Integer>mrl=printnodetoRoot(root.left,num);
+	ArrayList<Node>mrl=pathnodetoRoot(root.left,num);
 	if(mrl.size()>0) {
-		mrl.add(root.data);
+		mrl.add(root);
 		return mrl;
 	}
 	
-	ArrayList<Integer> mrr=printnodetoRoot(root.right,num);
+	ArrayList<Node> mrr=pathnodetoRoot(root.right,num);
 	if( mrr.size()>0) {
-		mrr.add(root.data);
+		mrr.add(root);
 		return mrr;
 	}
 	
-	ArrayList <Integer>br=new ArrayList<>();
-	return br;
+	
+	return new ArrayList<>();
 }
 public int max(Node root) {
 	if(root ==null) {
@@ -141,21 +149,129 @@ public int min(Node root) {
 	return Math.min(minlr, root.data);
 }
 
-public  void removeLeafs(Node parent, Node child) {
+public void levelorder(Node root) {
+   Queue<Node> queue=new LinkedList<>();
+   System.out.println("LevelOrder traversal");
+   if(root!=null)
+     queue.add(root);
+   while(queue.size()!=0) {
+	   if(root.left!=null)
+		   queue.add(root.left);
+	   if(root.right!=null)
+		   queue.add(root.right);
+	   System.out.print(queue.poll().data+ " ");
+	   root=queue.peek();
+   }
+}
 
-	if (child == null) {
+public void removeleaf(Node parent, Node child) {
+	if(child==null) {
 		return;
 	}
-	if (child.left == null && child.right == null) {
-		if (parent.left == child) {
-			parent.left = null;
-		} else {
-			parent.right = null;
+	if(child.left==null&& child.right==null) {
+		if(parent.left==child)
+			parent.left=null;
+		else parent.right=null;
+	}
+	removeleaf(child,child.left);
+	removeleaf(child,child.right);
+}
+
+public void printsinglechild(Node root) {
+	if (root==null) {
+		return;
+	}
+	if(root.left!=null && root.right==null) {
+		System.out.print(root.left.data+"\t");
+	}
+	else if(root.right!=null&& root.left==null) {
+		System.out.print(root.right.data+"\t");
+	}
+	printsinglechild(root.left);
+	printsinglechild(root.right);
+}
+public void printPathLowHigh(Node root,int low,int high, int sum, String str) {
+	if (root ==null)
+		return;
+	if(root.left==null&&root.right==null) {
+		sum+=root.data;
+		str+= root.data+" ";
+		if(sum<high&&sum>low)
+			System.out.println(str);
+		return;
+	}
+	
+	printPathLowHigh(root.left,low,high,sum+root.data,str+root.data+"  ");
+	printPathLowHigh(root.right,low,high,sum+root.data,str+root.data+"  ");
+}
+public void printKDown(Node root,int k, Node Blocker) {
+	if(k<0||root==null|| root==Blocker) {
+		return;
+	}
+	if(k==0)
+		System.out.println(root.data);
+	printKDown(root.left,k-1,Blocker);
+	printKDown(root.right,k-1,Blocker);
+}
+public void printKaway(Node root,int num,int k) {
+	ArrayList<Node> path= this.pathnodetoRoot(root, num);
+	this.printKDown(path.get(0),k,null);
+	for(int i=1;i<path.size()&&i<k;i++) {
+		this.printKDown(path.get(i),k-i,path.get(i-1));
+	}
+}
+public void printrightview(Node root) {
+	Queue <Node> queue=new LinkedList<Node>();
+	ArrayList<Integer> res=new ArrayList<Integer>();
+	queue.add(root);
+	queue.add(null);
+	while(!queue.isEmpty()) {
+		Node curr =queue.peek();
+		if(curr!=null) {
+			if(curr.left!=null)
+				queue.add(curr.left);
+				queue.add(curr.right);
 		}
-		return;
+		else
+			queue.add(queue.poll());
+		Node element=queue.poll();
+		curr=queue.peek();
+		if(curr==null) {
+			if(element!=null)
+				res.add(element.data);
+		}
 	}
-
-	removeLeafs(child, child.left);
-	removeLeafs(child, child.right);
+	System.out.println(res);
+	
+	
+}
+public void printleftview(Node root) {
+	Queue<Node>queue= new LinkedList<Node>();
+	ArrayList<Integer>res =new ArrayList<Integer>();
+	queue.add(root);
+	queue.add(null);
+	if(root!=null)
+		res.add(root.data);
+	while(!queue.isEmpty()) {
+		Node curr=queue.poll();
+		if(curr==null) {
+			if(queue.peek()!=null)
+				{res.add(queue.peek().data);
+			    queue.add(curr);
+		}}
+		
+		else {
+			if(curr.left!=null)
+				queue.add(curr.left);
+			if(curr.right!=null)
+				queue.add(curr.right);	
+		}
+	}
+	
+	System.out.println(res);
+	
+}
+public void leftViewRecursive() {
+	
 }
 }
