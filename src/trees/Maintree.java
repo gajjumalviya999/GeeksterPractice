@@ -8,18 +8,18 @@ public class Maintree {
 		TreeImp tree=new TreeImp(root);
 		tree.add(new Node(2),1,root,'L');
 		tree.add(new Node(3), 1, root, 'R');
-//		tree.add(new Node(4), 2, root, 'L');
+		tree.add(new Node(4), 2, root, 'L');
 		tree.add(new Node(5), 2, root, 'R');
 		tree.add(new Node(6), 3, root, 'L');
 		tree.add(new Node(7), 3, root, 'R');
-//		tree.add(new Node(8), 4, root, 'L');
-//		tree.add(new Node(9), 4, root, 'R');
+		tree.add(new Node(8), 4, root, 'L');
+		tree.add(new Node(9), 4, root, 'R');
 		tree.add(new Node(10), 5, root, 'L');
 		tree.add(new Node(11), 5, root, 'R');
 		tree.add(new Node(12), 6, root, 'L');
 		tree.add(new Node(13), 6, root, 'R');
 		tree.add(new Node(14), 7, root, 'L');
-		tree.add(new Node(15), 7, root, 'R');
+//		tree.add(new Node(15), 7, root, 'R');
 		
 		tree.display(root);
 		
@@ -36,8 +36,10 @@ public class Maintree {
 //		tree.display(root);
 //		tree.printPathLowHigh(root,6,20,0," ");
 //		tree.printKaway(root, 2, 2);
-		tree.printrightview(root);
-		tree.printleftview(root);
+//		tree.printrightview(root);
+//		tree.printleftview(root);
+		tree.leftViewRecursive(root,1);
+		tree.rightViewRecursive(root,1);
 	}
 
 }

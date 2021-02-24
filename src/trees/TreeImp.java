@@ -271,7 +271,28 @@ public void printleftview(Node root) {
 	System.out.println(res);
 	
 }
-public void leftViewRecursive() {
+int printedlevel=0;
+public void leftViewRecursive(Node root, int level) {
+	if(root==null)
+		return;
+	if(printedlevel<level) {
+		System.out.print(root.data+"\t");
+		printedlevel=level;
+	}
+	leftViewRecursive(root.left,level+1);
+	leftViewRecursive(root.right,level+1);
+	
+}
+int rprintedlevel=0;
+public void rightViewRecursive(Node root,int level) {
+	if(root==null)
+		return;
+	if(rprintedlevel<level) {
+		System.out.print(root.data+"\t");
+		rprintedlevel=level;
+	}
+	rightViewRecursive(root.right,level+1);
+	rightViewRecursive(root.left,level+1);
 	
 }
 }
