@@ -3,6 +3,7 @@ package trees;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class TreeImp {
 	Node root;
@@ -295,4 +296,238 @@ public void rightViewRecursive(Node root,int level) {
 	rightViewRecursive(root.left,level+1);
 	
 }
+public int LowestCommonAncestor(Node root, int x,int y) {
+	ArrayList<Node> pathx= this.pathnodetoRoot(root, x);
+	ArrayList<Node> pathy=this.pathnodetoRoot(root, y);
+//	System.out.println(pathx);
+//	System.out.println(pathy);
+	int i=pathx.size()-1;
+	int j=pathy.size()-1;
+	while(pathx.get(i)==pathy.get(j)) {
+		i-=1;
+		j-=1;
+	}
+	
+	return pathx.get(i+1).data;
 }
+
+static class Pair{
+	Node node;
+	int wc;
+	public Pair(Node node,int wc) {
+		this.node=node;
+		this.wc=0;
+	}
+}
+public void itterativepreorder(Node root) {
+	System.out.println("PreOrder");
+	Stack <Pair> stack= new Stack<Pair>();
+	Pair tpair=new Pair(root,0);
+	stack.push(tpair);
+	while(!stack.isEmpty()) {
+		Pair tp=stack.peek();
+		if(tp.wc==0) {
+			System.out.print(tp.node.data+"\t");
+			tp.wc++;
+		}
+		else if(tp.wc==1) {
+		  if(tp.node.left!=null)	
+		  {  Pair leftN= new Pair	(tp.node.left,0);
+			stack.push(leftN);
+		  }
+		  tp.wc++;
+		}
+		else if(tp.wc==2) {
+			  if(tp.node.left!=null)	
+			  {  Pair rightN= new Pair	(tp.node.right,0);
+				stack.push(rightN);
+			  }
+			  tp.wc++;
+			}
+		else
+			stack.pop();
+		
+	}
+	System.out.println();
+}
+
+public void itterativeinorder(Node root) {
+	System.out.println("Inorder");
+	Stack<Pair> stack= new Stack<>();
+	Pair pair= new Pair(root,0);
+	stack.push(pair);
+	while(!stack.isEmpty()) {
+		Pair tpair=stack.peek();
+		if(tpair.wc==0) {
+			if(tpair.node.left!=null)
+			{	Pair leftN = new Pair(tpair.node.left,0);
+				stack.push(leftN);
+				
+			}
+			tpair.wc++;
+		}
+		else if(tpair.wc==1) {
+			System.out.print(tpair.node.data+"\t");
+			tpair.wc++;
+		}
+		else if(tpair.wc==2) {
+			if(tpair.node.right!=null)
+				{Pair rightN=new Pair(tpair.node.right,0);
+				stack.push(rightN);	
+				}
+			tpair.wc++;
+		}
+		else
+			stack.pop();
+		
+		}
+	System.out.println();
+	
+}
+public void itterativepostorder(Node root) {
+	System.out.println("PostOrder");
+	Stack<Pair> stack= new Stack<Pair>();
+	if(root!=null)
+		{Pair pair=new Pair(root,0);
+			stack.push(pair);
+		}
+	while(!stack.isEmpty()) {
+		Pair tpair=stack.peek();
+		if(tpair.wc==0) {
+			if(tpair.node.left!=null) {
+				Pair leftN=new Pair(tpair.node.left,0);
+				stack.push(leftN);
+			}
+			tpair.wc++;
+		}
+		else if(tpair.wc==1) {
+			if(tpair.node.right!=null) {
+				Pair rightN=new Pair(tpair.node.right,0);
+				stack.push(rightN);
+			}
+			tpair.wc++;
+		}
+		else if(tpair.wc==2) {
+			System.out.print(tpair.node.data+"\t");
+			tpair.wc++;
+		}
+		else
+			stack.pop();
+	}
+	System.out.println();
+	
+}
+
+
+public boolean isbalanced(Node root) {
+	if (root==null) {
+		return true;
+	}
+	if(isbalanced(root.left)==false)
+		return false;
+	if(isbalanced(root.right)==false)
+		return false;
+	int lh=this.heightoftree(root.left);
+	int rh=this.heightoftree(root.right);
+	if(Math.abs(lh-rh)>1)
+		return false;
+	return true;
+		
+}
+class Pair1{
+	int height;
+	boolean balance;
+	
+	public Pair1(int h,boolean b) {
+		this.height=h;
+		this.balance=b;
+	}
+}
+
+public boolean isbalancedImprove(Node root) {
+	return isbalancedImprovehelper(root).balance;
+}
+
+
+
+
+private Pair1 isbalancedImprovehelper(Node root) {
+	if(root==null) {
+		return new Pair1(0,true);
+	}
+	Pair1 leftN=isbalancedImprovehelper(root.left);
+	Pair1 rightN=isbalancedImprovehelper(root.right);
+	
+	if(leftN.balance==false||rightN.balance==false) {
+		return new Pair1(Math.max(leftN.height, rightN.height)+1,false);
+	}
+	if(Math.abs(leftN.height-rightN.height)>1)
+		return new Pair1(Math.max(leftN.height, rightN.height)+1,false);
+	else
+		return new Pair1(Math.max(leftN.height, rightN.height)+1,true);
+}
+public int DiametertreeR(Node root,int max) {
+	if(root==null)
+		return 0;
+	int lh=this.heightoftree(root.left);
+	int rh=this.heightoftree(root.right);
+	max= Math.max(lh+rh,max);
+	return max;
+}
+class Pair2{
+	int height;
+	int diameter;
+	public Pair2(int h,int d) {
+		this.height=h;
+		this.diameter=d;
+	}
+}
+public int DiameterImporved(Node root) {
+	return DiameterImprovedhelper(root).diameter;
+}
+private Pair2 DiameterImprovedhelper(Node root) {
+	if(root==null) {
+		return new Pair2(0,0);
+	}
+	Pair2 leftN=DiameterImprovedhelper(root.left);
+	Pair2 rightN=DiameterImprovedhelper(root.right);
+	int mydiameter=leftN.height+rightN.height;
+	
+	return new Pair2(Math.max(leftN.height, rightN.height)+1,Math.max(mydiameter, Math.max(leftN.diameter, rightN.diameter)));
+}
+class Pair3{
+	int max;
+	int min;
+	boolean balance;
+	
+}
+public boolean isBSt(Node root) {
+	return isBSthelper(root).balance;
+}
+private Pair3 isBSthelper(Node root) {
+	// TODO Auto-generated method stub
+	if(root==null) {
+		Pair3 P= new Pair3();
+		P.max=Integer.MIN_VALUE;
+		P.min=Integer.MAX_VALUE;
+		P.balance=true;
+		return P;
+	}
+	Pair3 leftN=isBSthelper(root.left);
+	Pair3 rightN=isBSthelper(root.right);
+	if(leftN.balance==false||rightN.balance==false) {
+		Pair3 P=new Pair3();
+		P.balance=false;
+		return P;
+	}
+	
+	Pair3 P= new Pair3();
+	P.max=Math.max(root.data, Math.max(rightN.max,leftN.max));
+	P.min=Math.min(root.data, Math.min(rightN.min,leftN.min));
+	if(root.data>leftN.max&& root.data<rightN.min )
+	   P.balance=true;
+	return P;
+}
+
+}
+

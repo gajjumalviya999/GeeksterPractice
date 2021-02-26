@@ -19,7 +19,8 @@ public class Maintree {
 		tree.add(new Node(12), 6, root, 'L');
 		tree.add(new Node(13), 6, root, 'R');
 		tree.add(new Node(14), 7, root, 'L');
-//		tree.add(new Node(15), 7, root, 'R');
+		tree.add(new Node(15), 7, root, 'R');
+		
 		
 		tree.display(root);
 		
@@ -38,8 +39,16 @@ public class Maintree {
 //		tree.printKaway(root, 2, 2);
 //		tree.printrightview(root);
 //		tree.printleftview(root);
-		tree.leftViewRecursive(root,1);
-		tree.rightViewRecursive(root,1);
+//		tree.leftViewRecursive(root,1);
+//		tree.rightViewRecursive(root,1);
+//		tree.itterativeinorder(root);
+//		tree.itterativepreorder(root);
+//		tree.itterativepostorder(root);
+		System.out.println(tree.isbalanced(root));
+		System.out.println(tree.isbalancedImprove(root));
+		System.out.println(tree.DiametertreeR(root, 0));
+		System.out.println(tree.DiameterImporved(root));
+		System.out.println(tree.isBSt(root));
 	}
 
 }
