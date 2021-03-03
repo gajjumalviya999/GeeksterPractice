@@ -1,8 +1,8 @@
 package HW;
 class QueensProblem1{
 	public static void main(String[] args) {
-		int arr[][]=new int[8][8];
-		queensproblem(arr,8,0,0);
+		int arr[][]=new int[4][4];
+		queensproblem(arr,4,0,0);
 //		for(int i[]:arr) {
 //			for(int j=0;j<i.length;j++) {
 //				System.out.print(i[j]+ "\t");
