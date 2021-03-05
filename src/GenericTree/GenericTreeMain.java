@@ -8,7 +8,7 @@ public class GenericTreeMain {
 		GenericTree GT= new GenericTree(arr);
 		GT.display();
 		System.out.println(GT.NodeToRootPath(50));
-//		int arr1[]= {10,20,50,-1,60,-1,-1,30,70,-1,80,110,-1,120,-1,-1,90,-1,-1,40,100,-1,130,-1,-1,-1};
+//		int arr1[]= {10,40,100,-1,-1,30,70,-1,80,110,-1,120,-1,-1,90,-1,-1,20,60,-1,50,-1,-1,-1};
 //		GenericTree GT2= new GenericTree(arr1);
 //		GT.removeleafs();
 //		GT.display();
@@ -24,7 +24,11 @@ public class GenericTreeMain {
 //		System.out.println(GT.LowestCommonAncestor(10,120));
 //		System.out.println(GT.size());
 //		System.out.println(GT.sizedirect());
-		System.out.println(GT.DistanceBWnode(120,120));
+//		System.out.println(GT.DistanceBWnode(120,120));
+//		System.out.println(GenericTree.isMirror(GT,GT2));
+//		System.out.println(GenericTree.isSymmetric(GT));
+		System.out.println(GT.BFS());
+		GT.PredSuccNode(100);
 	}
 	
 	

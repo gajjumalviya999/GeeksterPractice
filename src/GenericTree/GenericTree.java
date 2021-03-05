@@ -1,6 +1,7 @@
 package GenericTree;
 
 import java.util.ArrayList;
+
 import java.util.Stack;
 public class GenericTree {
 	class Node{
@@ -30,6 +31,7 @@ public class GenericTree {
 			}
 		}
 	}
+	
 	public int sizedirect() {
 		return this.size;
 	}
@@ -48,6 +50,22 @@ public class GenericTree {
 			display(child);
 		}
 	}
+	public ArrayList<Integer>BFS(){
+		ArrayList<Integer> res= new ArrayList<Integer>();
+		 BFS(this.root, res);
+		 return res;
+	}
+
+	private void BFS(Node root, ArrayList<Integer> res) {
+		// TODO Auto-generated method stub
+		if(root!=null)
+			res.add(root.data);
+		for(Node child:root.children) {
+			BFS(child,res);
+		}
+		
+	}
+
 	public int size() {
 		if(root==null)
 			return 0;
@@ -250,6 +268,59 @@ public class GenericTree {
 		
 		return i+j;
 	}
+	public static boolean isMirror(GenericTree GT1,GenericTree GT2) {
+		return isMirror(GT1.root,GT2.root);
+	}
+	private static boolean isMirror(Node root1, Node root2) {
+		if(root1==null&&root2==null)
+			return true;
+		if(root1==null||root2==null)
+			return false;
+		if(root1.children.size()!=root2.children.size()) {
+			return false;
+		}
+		for(int i=0;i<root1.children.size();i++) {
+			int j=root2.children.size()-i-1;
+			if(isMirror(root1.children.get(i),root2.children.get(j))==false){
+				return false;
+			}
+		}
+		return true;
+	}
+	public static boolean isSymmetric(GenericTree GT1) {
+		return isMirror(GT1.root,GT1.root);
+	}
+	public void PredSuccNode(int d) {
+		PredSuccNode(this.root,d);
+	}
+
+	private void PredSuccNode(Node root, int d) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> path= this.BFS();
+		if(path.get(0)==d) {
+			System.out.println("Predessor: NOt Found the given Data is Root" );
+			System.out.println("Succesoor: "+ path.get(1));
+			return;
+		}
+		if(path.get(path.size()-1)==d) {
+			
+			System.out.println("Predessor "+ path.get(path.size()-2));
+			System.out.println("successor: Not Found the given Data is last leaf NOde " );
+			return;
+		}
+		int i=1;
+		for(;i<path.size()-1;i++) {
+			if(path.get(i)==d) {
+				System.out.println("Predessor : " + path.get(i-1));
+				System.out.println("Successsor:  "+ path.get(i+1));
+				return;
+			}
+		}
+		if(i==path.size()-1) {
+			System.out.println("Element NOt Found!!! Try Agian!!");
+		}
+	}
+	
 	
 	
 }
