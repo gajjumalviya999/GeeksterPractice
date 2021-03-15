@@ -30,7 +30,7 @@ public class GetIntesectionNode {
 		while(current2!=null)
 			{s2++;
 			current2=current2.getnext();
-			}
+			}              
 		int d=Math.abs(s1-s2);
 		//System.out.println(""+ s1 + s2 +d);
 		 current1=linkedlist1.head;

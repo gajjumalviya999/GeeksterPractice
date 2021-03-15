@@ -15,6 +15,7 @@ class firstnonRepeatingcharacter{
 		// TODO Auto-generated method stub
 		List <Character> nonRepeat=new ArrayList<Character>();
 		boolean repeat[]=new boolean[26];
+		System.out.println(repeat[0]);
 		for(int i=0;i<stream.length();i++) {
 			char ch=stream.charAt(i);
 			if(repeat[(int)ch-97]==false) {

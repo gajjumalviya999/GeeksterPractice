@@ -1,14 +1,17 @@
 package HashMaputil;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 public class HashMaputil {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		HashMap<Integer, Integer> hmap1= new HashMap<>();
-		int []arr1= {2,2,3,3,3,5,5,5,1};
-		int[] arr2= {2,2,5,5,5,1};
+		int []arr1= {1,1,2,2,2,3,5};
+		int[] arr2= {1,1,1,2,2,4,5};
 		
 		for(int i=0;i<arr1.length;i++) {
 			if(!hmap1.containsKey(arr1[i])) {
@@ -29,9 +32,11 @@ public class HashMaputil {
 			}
 		}
 //		getCommonElement(hmap1,hmap2);
-//		getCommonElement2(hmap1,hmap2);
-		int[] arr = {2,12,9,16,10,5,3,20,25,11,1,8,6,13};
-		LongestSubsequence(arr);
+//		getCommonElement2(arr1,arr2);
+//		int[] arr = {2,12,9,16,10,5,3,20,25,11,1,8,6,13};
+//		LongestSubsequence(arr);
+//		LargetsKelementinarr(arr ,4);
+		LongestSubstringWithoutRepeat("gajendramalviya");
 		
 	}
 	public static void getCommonElement(HashMap<Integer,Integer>hmap1,HashMap<Integer,Integer> hmap2) {
@@ -40,12 +45,26 @@ public class HashMaputil {
 				System.out.print(keys+"  ");
 		}
 	}
-	public static void getCommonElement2(HashMap<Integer,Integer>hmap1,HashMap<Integer,Integer> hmap2) {
+	public static void getCommonElement2(int[] arr1,int[] arr2) {
 		System.out.println();
-		for(int keys:hmap1.keySet()) {
-			if(hmap1.get(keys)==hmap2.get(keys))
-				System.out.print(keys+"  ");
+		HashMap<Integer, Integer> hmap1= new HashMap<>();
+		for(int i=0;i<arr1.length;i++) {
+			if(!hmap1.containsKey(arr1[i])) {
+				hmap1.put(arr1[i],1);
+			}
+			else {
+				hmap1.put(arr1[i],hmap1.get(arr1[i])+1);
+			}
 		}
+		for(int a: arr2) {
+			if(hmap1.containsKey(a)) {
+				System.out.print(a+"   ");
+				hmap1.put(a, hmap1.get(a)-1);
+				if(hmap1.get(a)==0)
+					hmap1.remove(a);
+			}
+		}
+		
 	}
 	public static void LongestSubsequence(int arr[]) {
 		HashMap<Integer,Boolean>hmap= new HashMap<>();
@@ -72,7 +91,50 @@ public class HashMaputil {
 				}
 			}
 		}
+		System.out.println();
 		System.out.println(sidx+ "   " +maxcount);
+		
+	}
+	public static void LargetsKelementinarr(int arr[],int k){
+		PriorityQueue<Integer> pq= new PriorityQueue<>();
+		for(int i=0;i<arr.length;i++) {
+			if(i<k) {
+				pq.add(arr[i]);
+			}
+			else {
+				if(arr[i]>pq.peek()) {
+					pq.remove();
+					pq.add(arr[i]);
+				}
+			}
+		}
+		while(pq.size()>0) {
+			System.out.println(pq.remove());
+		}
+	}
+	public static void LongestSubstringWithoutRepeat(String Str) {
+		int max=0;
+		int count=0;
+		int sidx=-1;
+		for(int i=0;i<Str.length();i++) {
+			Set<Character> myset=new HashSet<>();
+			count=0;
+			inner: for(int j=i;j<Str.length();j++) {
+				if(!myset.contains(Str.charAt(j)))
+				{
+					myset.add(Str.charAt(j));
+					count++;
+				}
+				else
+					break inner;
+			}
+			if(count>max) {
+				sidx=i;
+			    max=count;
+			}
+		}
+		System.out.println(Str.substring(sidx,sidx+max));
+		
 		
 	}
 	
