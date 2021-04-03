@@ -9,37 +9,44 @@ public class TargetSumSubSet {
 		int arr[]= {4,2,7,1,3};
 		targetsumsubset(arr,10);
 	}
-
+	static class Pair{
+		boolean value;
+		String str;
+	}
 	private static void targetsumsubset(int[] arr,int sum) {
 		// TODO Auto-generated method stub
 		
-		boolean dp[][]=new boolean[arr.length+1][sum+1];
+		Pair dp[][]=new Pair[arr.length+1][sum+1];
 		int n=dp.length;
 		int m=dp[0].length;
-		for(int i=0;i<n;i++) {
-			dp[i][0]=true;
-		}
-		for(int i=1;i<m;i++) {
-			dp[0][i]=false;
-		}
-		for(int i=1;i<n;i++) {
-			for(int j=1;j<m;j++) {
-				if(arr[i-1]==j||dp[i-1][j]) {
-					dp[i][j]=true;
+		for(int i=0;i<n;i++) {//elements
+			for(int j=0;j<m;j++) {//sum
+				Pair P= new Pair();
+				if(j==0) {
+					P.value=true;
+					P.str="";
 				}
-				else if(j-arr[i-1]>=0&&dp[i-1][j-arr[i-1]]) {
-					dp[i][j]=true;
+				else if(i==0) {
+					P.value=false;
+					P.str="";
 				}
+				else if(dp[i-1][j].value==true) {
+					P.value=true;
+					P.str=dp[i-1][j].str;
+				}
+				else if((j-arr[i-1])>=0 && dp[i-1][j-arr[i-1]].value==true) {
+					P.value=true;
+					P.str=dp[i-1][j-arr[i-1]].str+arr[i-1];
+				}
+				else 
+				{
+					P.value=false;
+					P.str="";
+				}
+				dp[i][j]=P;
 			}
 		}
-		for(boolean [] a:dp) {
-			for(boolean b:a) {
-				System.out.print(b+"\t");
-			}
-			System.out.println();
-		}
-		
+		System.out.println(dp[n-1][m-1].value+ " "+ dp[n-1][m-1].str);
 		
 	}
-
 }
