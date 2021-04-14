@@ -109,4 +109,34 @@ public class Graph {
 		}
 		visited.remove(src);	
 	}
+	int minweight;
+	String as;
+	public void hasPathPrintmin(String src, String dest) {
+		 minweight=Integer.MAX_VALUE;
+		 as="";
+		 hasPathPrintmin(src, dest, new HashSet<>(),src,0);
+		 System.out.println(minweight+" Path "+as);
+		 
+	}
+
+	private void hasPathPrintmin(String src, String dest, HashSet<String> visited,String asf,int currweight) {
+		// TODO Auto-generated method stub
+		if(src.equals(dest))
+		{	visited.add(dest);
+			if(currweight<minweight)
+			{
+				minweight=currweight;
+				as=asf;
+			}
+		    return;
+		}
+		ArrayList<String> nbrs= new ArrayList<>(vertices.get(src).keySet());
+		visited.add(src);
+		for(String nbr:nbrs) {
+			if(!visited.contains(nbr)) {
+				hasPathPrintmin(nbr, dest,visited,asf+nbr, currweight+vertices.get(src).get(nbr));
+			}
+		}
+		visited.remove(src);	
+	}
 }

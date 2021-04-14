@@ -29,7 +29,7 @@ public class GraphMain {
 	     System.out.println(g.countVertices());
 	     System.out.println(g.countEdges());
 	     g.hasPathPrint("A","G");
-	     
+	     g.hasPathPrintmin("A","G");
 	     
 	}
 	
